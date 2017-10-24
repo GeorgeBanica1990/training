@@ -1,0 +1,26 @@
+package listeners;
+
+import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
+import javax.persistence.PreUpdate;
+
+import entities.SimpleEntity;
+import model.Person;
+
+public class EntityListener {
+
+	@PrePersist
+	public void prepersist(SimpleEntity person) {
+		System.out.println("pre persist");
+	}
+	
+	@PreUpdate
+	public void preupdate(Person person) {
+		System.out.println("pre update");
+	}
+	
+	@PreRemove
+	public void preremove(Person person) {
+		System.out.println("pre remove");
+	}
+}

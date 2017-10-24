@@ -1,0 +1,5 @@
+package threadlocaltest;
+
+public class MyThread {
+
+}

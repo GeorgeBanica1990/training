@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;listeners&apos; to &apos;trainingJPA/src/main/java&apos;&#x0D;&#x0A;- Original project: &apos;testJPA&apos;&#x0D;&#x0A;- Destination element: &apos;trainingJPA/src/main/java&apos;&#x0D;&#x0A;- Original element: &apos;testJPA/src/main/java/listeners&apos;" description="Copy package" destination="=trainingJPA/src\/main\/java" element1="/src\/main\/java&lt;listeners" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1508762787938" version="1.0"/>
+</session>

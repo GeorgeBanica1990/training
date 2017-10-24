@@ -1,0 +1,14 @@
+package models;
+
+import java.lang.reflect.Proxy;
+
+import interfaces.ResourceInterface;
+import models.Resource;
+
+
+public class ProxyExample {
+	Resource testClass = new Resource();
+	ReflectionExample reflClass = new ReflectionExample(testClass);
+	ResourceInterface intf = (ResourceInterface) Proxy.newProxyInstance(ResourceInterface.class.getClassLoader(), new Class[] {ResourceInterface.class}, reflClass);
+	intf.showResource(1, "test");
+}

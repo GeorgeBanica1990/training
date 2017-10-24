@@ -1,0 +1,8 @@
+package entities;
+
+@Entity
+@Table(name = "customers")
+public class Customer {
+
+	
+}

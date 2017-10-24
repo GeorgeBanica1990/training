@@ -1,0 +1,11 @@
+package threadlocaltest;
+
+public class MyThread implements Runnable{
+
+	public void run() {
+		private ThreadLocal<String> threadLocal = new ThreadLocal<String>();
+		
+		
+	}
+
+}

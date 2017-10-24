@@ -1,0 +1,13 @@
+import reflectionclasses.ReflectionClass;
+import testclasses.ResourceClass;
+
+public class ProxyTest {
+
+	public static void main(String[] args) {
+		ResourceClass testClass = new ResourceClass();
+		ReflectionClass reflClass = new ReflectionClass(testClass);
+		
+
+	}
+
+}

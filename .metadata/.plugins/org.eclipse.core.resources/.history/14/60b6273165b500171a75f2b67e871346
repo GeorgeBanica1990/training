@@ -1,0 +1,9 @@
+package xmltraining.model;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(namespace = "xmltraining.model")
+public class BookStore {
+
+
+}

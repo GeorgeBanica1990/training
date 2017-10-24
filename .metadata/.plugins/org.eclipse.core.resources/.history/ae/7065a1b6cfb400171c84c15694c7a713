@@ -1,0 +1,19 @@
+package threadlocaltest;
+
+public class MyThreadLocal {
+
+	private ThreadLocal<String> threadLocal = new ThreadLocal<String>();
+	
+	public void set(String value) {
+		threadLocal.set(value);
+	}
+	
+	public void unset() {
+		threadLocal.remove();
+	}
+	
+	public String get() {
+		return threadLocal.get();
+	}
+
+}

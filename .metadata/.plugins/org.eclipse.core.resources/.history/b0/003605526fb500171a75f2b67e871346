@@ -1,0 +1,23 @@
+package model;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+import utils.ReflectionUtils;
+
+@SuppressWarnings("rawtypes") 
+public class ReflectionExample implements InvocationHandler {
+
+	private Resource classToTest;
+
+	public ReflectionExample(Resource testClass) {
+		this.classToTest = testClass;
+	}
+
+	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		Class classforTest = classToTest.getClass();
+		ReflectionUtils.printReflectionMethods(classforTest);
+		return null;
+	}
+
+}

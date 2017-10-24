@@ -1,0 +1,5 @@
+package xmltraining.model;
+
+public class Book {
+
+}

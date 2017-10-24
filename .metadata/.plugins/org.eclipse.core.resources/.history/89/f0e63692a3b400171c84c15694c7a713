@@ -1,0 +1,17 @@
+import java.lang.reflect.Proxy;
+
+import reflectionclasses.ReflectionClass;
+import testclasses.ResourceClass;
+import testclasses.ResourceInterface;
+
+public class ProxyTest {
+
+	public static void main(String[] args) {
+		ResourceClass testClass = new ResourceClass();
+		ReflectionClass reflClass = new ReflectionClass(testClass);
+		ResourceInterface intf = (ResourceInterface) Proxy.newProxyInstance(ResourceInterface.class.getClassLoader(), new Class[] {ResourceInterface.class}, reflClass);
+		intf.showResource(1, "test");
+
+	}
+
+}

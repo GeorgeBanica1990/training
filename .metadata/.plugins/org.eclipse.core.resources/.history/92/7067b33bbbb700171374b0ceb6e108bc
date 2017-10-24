@@ -1,0 +1,22 @@
+package test;
+
+import javax.xml.bind.JAXBException;
+
+import org.junit.Test;
+
+import xml.model.BookStore;
+import xml.service.XMLService;
+
+public class XMLBindTest {
+
+	@Test
+	public static void testXML() throws JAXBException {
+		XMLService xmlService =  new XMLService();
+		BookStore bookstore = xmlService.createBookstore();
+		xmlService.useJAXB(bookstore);
+		
+	}
+
+	
+
+}

@@ -1,0 +1,12 @@
+entities\Customer.class
+entities\Package.class
+entities\Item.class
+entities\SimpleEntity.class
+enums\StringEnum.class
+enums\Cover.class
+enums\OrdinalEnum.class
+entities\SequenceEntity.class
+converter\CoverConverter$1.class
+listeners\EntityListener.class
+dao\SimpleEntityDAO.class
+converter\CoverConverter.class

@@ -1,0 +1,18 @@
+1508403820290	Extract method 'printMethods'
+1508403855757	Extract method 'printSuperclass'
+1508403875961	Extract method 'printInterfaces'
+1508403892078	Extract method 'printAnnotations'
+1508403909811	Extract method 'printFields'
+1508403932600	Extract method 'printConstructors'
+1508409435801	Copy compilation unit
+1508409443698	Delete element
+1508409463240	Copy compilation unit
+1508409467929	Delete element
+1508409847911	Rename type 'MyThread'
+1508423449405	Delete element
+1508423473580	Delete element
+1508423625112	Rename type 'TestXMLModel'
+1508485615127	Extract method 'createBook'
+1508487250607	Copy package
+1508487347749	Copy compilation units
+1508487368150	Copy compilation unit

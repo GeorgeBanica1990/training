@@ -1,0 +1,24 @@
+package xmltraining;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import xmltraining.model.Book;
+
+public class XMLBindTest {
+
+	private static final String BOOKSTORE_XML = "./bookstore-jaxb.xml";
+
+	public static void main(String[] args) {
+		List<Book> bookList = new ArrayList<Book>();
+
+		Book book1 = new Book();
+		book1.setAuthor("autor 1");
+		book1.setIsbn("1234");
+		book1.setName("carte 1");
+		book1.setPublisher("publisher1");
+		
+		bookList.add(book1);
+	}
+
+}

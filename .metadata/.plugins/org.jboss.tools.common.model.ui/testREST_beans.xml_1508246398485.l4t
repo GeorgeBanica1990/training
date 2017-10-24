@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layout resource="/testREST/src/main/webapp/WEB-INF/beans.xml">
+ <TreeFormPage>
+  <Memento type="FileCDIBeans11">
+   <Memento collapsed="false" type="Cdi Beans"/>
+  </Memento>
+  <Memento type="CDIInterceptors">
+   <Memento collapsed="false" type="Interceptors"/>
+  </Memento>
+  <Memento type="CDIClass">
+   <Memento type="Class"/>
+  </Memento>
+ </TreeFormPage>
+</Layout>

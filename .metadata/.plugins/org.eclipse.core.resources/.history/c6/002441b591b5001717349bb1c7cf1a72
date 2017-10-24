@@ -1,0 +1,43 @@
+package tests;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.junit.Test;
+
+import entities.SimpleEntity;
+
+public abstract class TransactionalSetup extends Setup {
+
+	@Before
+	public void beforeEachTest() {
+		
+		EntityManager em = emFactory.createEntityManager();
+		em.getTransaction().begin();
+		
+		SimpleEntity entity = new SimpleEntity();
+		entity.setName("EntityName");
+		em.persist(entity);
+		
+		em.getTransaction().commit();
+		em.close();
+		
+	}
+	
+	@After
+	public void afterEachTest() {
+		
+		EntityManager em = emFactory.createEntityManager();
+		em.getTransaction().begin();
+		
+		SimpleEntity entity = new SimpleEntity();
+		entity.setName("EntityName");
+		em.persist(entity);
+		
+		em.getTransaction().commit();
+		em.close();
+		
+	}
+
+}

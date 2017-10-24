@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Built-By: GeorgeB
+Class-Path: testEJB-0.0.1-SNAPSHOT.jar testJPA-0.0.1-SNAPSHOT.jar slf4
+ j-api-1.7.13.jar slf4j-simple-1.7.13.jar
+Build-Jdk: 1.8.0_144
+Created-By: Maven Integration for Eclipse
+

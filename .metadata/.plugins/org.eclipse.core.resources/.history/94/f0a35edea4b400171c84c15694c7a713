@@ -1,0 +1,46 @@
+package reflectionclasses;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+import testclasses.ResourceClass;
+
+public class ReflectionClass implements InvocationHandler {
+
+	private ResourceClass classToTest;
+
+	public ReflectionClass(ResourceClass testClass) {
+		this.classToTest = testClass;
+	}
+
+	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		Class classforTest = classToTest.getClass();
+		Method[] methods = classforTest.getDeclaredMethods();
+		for (Method mthd : methods) {
+			System.out.println("Method Name: " + mthd.getName());
+		}
+		String parentclassName = classforTest.getSuperclass().getName();
+		System.out.println("parent class name: " + parentclassName);
+		
+		Class[] interfaces = classforTest.getInterfaces();
+		for (Class cls : interfaces) {
+			System.out.println("Interface name: " + cls.getName());
+		}
+		Annotation[] annotations = classforTest.getAnnotations();
+		for(Annotation annt : annotations) {
+			System.out.println("annotation name: " + annt.toString());
+		}
+		
+		Field[] fields = classforTest.getDeclaredFields();
+		for (Field fld : fields) {
+			System.out.println("Field name: " + fld.getName());
+			System.out.println("Modifier name: " + fld.getModifiers());
+		}
+		 Constructor[] constructors = classToTest.getClass()
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,41 @@
+package converter;
+
+import javax.persistence.AttributeConverter;
+
+import enums.Cover;
+/**
+ * Converter class used to map enum in DB as a single literal
+ * @author GeorgeB
+ *
+ */
+public class CoverConverter implements AttributeConverter<Cover, String>{
+
+	@Override
+	public String convertToDatabaseColumn(Cover attribute) {
+		switch(attribute) {
+		case DUST_JACKET:
+			return "D";
+		case HARDCOVER:
+			return "H";
+		case PAPERBACK:
+			return "P";
+		default:
+			throw new IllegalArgumentException("Unknown " + attribute);
+		}
+	}
+
+	@Override
+	public Cover convertToEntityAttribute(String dbData) {
+		switch(dbData) {
+		case "D":
+			return Cover.DUST_JACKET;
+		case "H":
+			return Cover.HARDCOVER;
+		case "P":
+			return Cover.PAPERBACK;
+		default:
+			throw new IllegalArgumentException("Unknown " + dbData);
+		}
+	}
+
+}

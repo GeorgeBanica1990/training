@@ -1,0 +1,66 @@
+package reflectionclasses;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import testclasses.ResourceClass;
+
+public class ReflectionUtils {
+
+	public static void printReflectionMethods(Class classToReflect) {
+		Method[] methods = classToReflect.getDeclaredMethods();
+		for (Method mthd : methods) {
+			System.out.println("Method Name: " + mthd.getName());
+		}
+		String parentclassName = classToReflect.getSuperclass().getName();
+		System.out.println("parent class name: " + parentclassName);
+
+		Class[] interfaces = classToReflect.getInterfaces();
+		for (Class cls : interfaces) {
+			System.out.println("Interface name: " + cls.getName());
+		}
+		Annotation[] annotations = classToReflect.getAnnotations();
+		for (Annotation annt : annotations) {
+			System.out.println("annotation name: " + annt.toString());
+		}
+
+		Field[] fields = classToReflect.getDeclaredFields();
+		for (Field fld : fields) {
+			System.out.println("Field name: " + fld.getName());
+			System.out.println("Modifier name: " + fld.getModifiers());
+		}
+		Constructor[] constructors = classToReflect.getDeclaredConstructors();
+		for (Constructor constr : constructors) {
+			System.out.println("Constructor: " + constr.getName());
+			if (constr.getModifiers() == 2) {
+				System.out.println("private constructor");
+				constr.setAccessible(true);
+				ResourceClass privateConstruct;
+				try {
+					privateConstruct = (ResourceClass) constr.newInstance("test");
+					System.out.println("created from private constr: " + privateConstruct.getText());
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		}
+	}
+	
+	public static void changeStaticFinalFieldValue(Field field) {
+		
+	}
+}

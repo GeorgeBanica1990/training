@@ -1,0 +1,12 @@
+package xmltraining;
+
+public class XMLBindTest {
+
+	private static final String BOOKSTORE_XML = "./bookstore-jaxb.xml";
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

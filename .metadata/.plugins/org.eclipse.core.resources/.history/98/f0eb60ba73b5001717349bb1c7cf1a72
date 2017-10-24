@@ -1,0 +1,18 @@
+package reflection;
+
+import org.junit.Test;
+
+import models.ProxyExample;
+import utils.ReflectionUtils;
+
+@SuppressWarnings("rawtypes") 
+public class ReflectionTest {
+
+	@Test
+	public void test() throws ClassNotFoundException {
+		ProxyExample.createProxy();
+		Class testclass = Class.forName("testclasses.ResourceClass");
+		ReflectionUtils.printReflectionMethods(testclass);
+	}
+
+}

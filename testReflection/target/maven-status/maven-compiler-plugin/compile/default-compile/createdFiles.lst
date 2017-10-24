@@ -1,0 +1,7 @@
+models\ParentResource.class
+models\ReflectionExample.class
+models\ProxyExample.class
+models\Resource.class
+annotations\TestAnnotation.class
+interfaces\ResourceInterface.class
+utils\ReflectionUtils.class

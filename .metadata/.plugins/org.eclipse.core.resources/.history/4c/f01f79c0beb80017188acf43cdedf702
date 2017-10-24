@@ -1,0 +1,128 @@
+package tests;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.Test;
+import org.unitils.reflectionassert.ReflectionAssert;
+
+import entities.Customer;
+import entities.Item;
+import entities.Package;
+import entities.SequenceEntity;
+import entities.SimpleEntity;
+import enums.Cover;
+
+public class JpaTest extends TransactionalSetup {
+
+	@Test
+	public void testCRUD() {
+
+		Date dateForTest = new Date(System.currentTimeMillis());
+		// CREATE
+		SimpleEntity createdEntity = new SimpleEntity();
+		createdEntity.setName("EntityName");
+		createdEntity.setCover(Cover.DUST_JACKET);
+		createdEntity.setCurrentDate(dateForTest);
+		em.persist(createdEntity);
+		em.flush();
+
+		// TEST CREATE => READ
+		em.clear();
+		SimpleEntity existingEntity1 = em.find(SimpleEntity.class, createdEntity.getId());
+		ReflectionAssert.assertLenientEquals(createdEntity, existingEntity1);
+
+		// UPDATE
+		em.clear();
+		SimpleEntity updatedEntity = em.find(SimpleEntity.class, createdEntity.getId());
+		updatedEntity.setName("gheorghe");
+		updatedEntity.setCover(Cover.DUST_JACKET);
+		createdEntity.setCurrentDate(dateForTest);
+		em.merge(updatedEntity);
+		em.flush();
+
+		// TEST UPDATE => READ
+		em.clear();
+		SimpleEntity existingEntity2 = em.find(SimpleEntity.class, createdEntity.getId());
+		// adjust to update entity
+		createdEntity.setName("gheorghe");
+		createdEntity.setCover(Cover.DUST_JACKET);
+		createdEntity.setCurrentDate(dateForTest);
+		ReflectionAssert.assertLenientEquals(createdEntity, existingEntity2);
+
+		// TEST DELETE
+		em.createQuery("delete from SimpleEntity").executeUpdate();
+		List<SimpleEntity> resutlAfterDelete = em.createQuery("select s from SimpleEntity s", SimpleEntity.class)
+				.getResultList();
+		ReflectionAssert.assertLenientEquals(resutlAfterDelete, new ArrayList<SimpleEntity>());
+
+	}
+
+	@Test
+	public void testSequence() {
+		SequenceEntity seqEnt = new SequenceEntity();
+		seqEnt.setName("test");
+		em.persist(seqEnt);
+		em.flush();
+
+		// TEST CREATE => READ
+		em.clear();
+		SequenceEntity testent = em.find(SequenceEntity.class, seqEnt.getId());
+		ReflectionAssert.assertLenientEquals(seqEnt, testent);
+
+		// TEST DELETE
+		em.createQuery("delete from SequenceEntity").executeUpdate();
+		List<SequenceEntity> resutlAfterDelete = em.createQuery("select s from SequenceEntity s", SequenceEntity.class)
+				.getResultList();
+		ReflectionAssert.assertLenientEquals(resutlAfterDelete, new ArrayList<SequenceEntity>());
+	}
+
+	@Test
+	public void testRelations() {
+
+		Package createdPkg = new Package();
+		createdPkg.setName("pkg");
+		em.persist(createdPkg);
+
+		Package createdPkg2 = new Package();
+		createdPkg2.setName("pkg2");
+		em.persist(createdPkg2);
+
+		Item createdItem = new Item();
+		createdItem.setName("item");
+		createdItem.setPkg(em.find(Package.class, createdPkg.getId()));
+		em.persist(createdItem);
+
+		Item createdItem2 = new Item();
+		createdItem2.setName("item2");
+		createdItem2.setPkg(em.find(Package.class, createdPkg2.getId()));
+		em.persist(createdItem2);
+
+		createdPkg.getItemList().add(createdItem);
+		createdPkg.getItemList().add(createdItem2);
+		em.merge(createdPkg);
+
+		Customer customerOne = new Customer();
+		customerOne.setName("first customer");
+		customerOne.getPackageList().add(createdPkg);
+		customerOne.getPackageList().add(createdPkg2);
+		em.persist(customerOne);
+		Customer customerTwo = new Customer();
+		customerTwo.setName("secondcust");
+
+		customerTwo.getPackageList().add(createdPkg);
+		customerTwo.getPackageList().add(createdPkg2);
+		em.persist(customerTwo);
+
+		Package dbpack = em.find(Package.class, createdPkg2.getId());
+		dbpack.getCustomerList().add(customerOne);
+		dbpack.getCustomerList().add(customerTwo);
+
+		Package dbPack = em.find(Package.class, createdPkg.getId());
+		ReflectionAssert.assertLenientEquals(createdPkg, dbPack);
+		Customer testCust = em.find(Customer.class, customerOne.getId());
+		ReflectionAssert.assertLenientEquals(customerOne, testCust);
+
+	}
+}

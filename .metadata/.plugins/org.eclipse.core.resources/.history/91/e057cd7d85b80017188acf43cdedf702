@@ -1,0 +1,13 @@
+package entities;
+
+import javax.persistence.Entity;
+
+@Entity
+@Table(name = "sequenceentity")
+public class SequenceEntity {
+
+	private Integer id;
+	
+	
+	private String name;
+}

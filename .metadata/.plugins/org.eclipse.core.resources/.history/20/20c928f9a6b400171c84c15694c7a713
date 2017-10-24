@@ -1,0 +1,8 @@
+package reflectionclasses;
+
+public class ReflectionUtils {
+
+	public static void printReflectionMethods(Class classToReflect) {
+		
+	}
+}

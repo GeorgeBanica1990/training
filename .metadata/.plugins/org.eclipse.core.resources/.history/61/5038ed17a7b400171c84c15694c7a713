@@ -1,0 +1,25 @@
+package reflectionclasses;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+import testclasses.ResourceClass;
+
+public class ReflectionClass implements InvocationHandler {
+
+	private ResourceClass classToTest;
+
+	public ReflectionClass(ResourceClass testClass) {
+		this.classToTest = testClass;
+	}
+
+	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		Class classforTest = classToTest.getClass();
+		ReflectionUtils.printReflectionMethods(classforTest);
+		return null;
+	}
+
+}

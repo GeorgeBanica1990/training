@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:bookStore xmlns:ns2="xml.model">
+    <bookList>
+        <book>
+            <author>author1</author>
+            <title>name1</title>
+            <publisher>publisher1</publisher>
+            <isbn>isbn1</isbn>
+        </book>
+        <book>
+            <author>author2</author>
+            <title>name2</title>
+            <publisher>publisher2</publisher>
+            <isbn>isbn2</isbn>
+        </book>
+        <book>
+            <author>author3</author>
+            <title>name3</title>
+            <publisher>publisher3</publisher>
+            <isbn>isbn3</isbn>
+        </book>
+        <book>
+            <author>author4</author>
+            <title>name4</title>
+            <publisher>publisher4</publisher>
+            <isbn>isbn4</isbn>
+        </book>
+    </bookList>
+    <location>aici</location>
+    <name>bookstore1</name>
+</ns2:bookStore>

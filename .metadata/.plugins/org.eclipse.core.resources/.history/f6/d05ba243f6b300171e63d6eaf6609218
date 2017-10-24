@@ -1,0 +1,7 @@
+package reflectionclasses;
+
+import java.lang.reflect.InvocationHandler;
+
+public class ReflectionClass implements InvocationHandler{
+
+}

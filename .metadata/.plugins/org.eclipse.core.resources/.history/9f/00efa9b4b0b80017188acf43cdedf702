@@ -1,0 +1,96 @@
+package tests;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.Test;
+import org.unitils.reflectionassert.ReflectionAssert;
+
+import entities.Item;
+import entities.Package;
+import entities.SequenceEntity;
+import entities.SimpleEntity;
+import enums.Cover;
+
+public class JpaTest extends TransactionalSetup {
+
+	@Test
+	public void testCRUD() {
+
+		Date dateForTest = new Date(System.currentTimeMillis());
+		// CREATE
+		SimpleEntity createdEntity = new SimpleEntity();
+		createdEntity.setName("EntityName");
+		createdEntity.setCover(Cover.DUST_JACKET);
+		createdEntity.setCurrentDate(dateForTest);
+		em.persist(createdEntity);
+		em.flush();
+
+		// TEST CREATE => READ
+		em.clear();
+		SimpleEntity existingEntity1 = em.find(SimpleEntity.class, createdEntity.getId());
+		ReflectionAssert.assertLenientEquals(createdEntity, existingEntity1);
+
+		// UPDATE
+		em.clear();
+		SimpleEntity updatedEntity = em.find(SimpleEntity.class, createdEntity.getId());
+		updatedEntity.setName("gheorghe");
+		updatedEntity.setCover(Cover.DUST_JACKET);
+		createdEntity.setCurrentDate(dateForTest);
+		em.merge(updatedEntity);
+		em.flush();
+
+		// TEST UPDATE => READ
+		em.clear();
+		SimpleEntity existingEntity2 = em.find(SimpleEntity.class, createdEntity.getId());
+		// adjust to update entity
+		createdEntity.setName("gheorghe");
+		createdEntity.setCover(Cover.DUST_JACKET);
+		createdEntity.setCurrentDate(dateForTest);
+		ReflectionAssert.assertLenientEquals(createdEntity, existingEntity2);
+
+		// TEST DELETE
+		em.createQuery("delete from SimpleEntity").executeUpdate();
+		List<SimpleEntity> resutlAfterDelete = em.createQuery("select s from SimpleEntity s", SimpleEntity.class)
+				.getResultList();
+		ReflectionAssert.assertLenientEquals(resutlAfterDelete, new ArrayList<SimpleEntity>());
+
+	}
+
+	@Test
+	public void testSequence() {
+		SequenceEntity seqEnt = new SequenceEntity();
+		seqEnt.setName("test");
+		em.persist(seqEnt);
+		em.flush();
+
+		// TEST CREATE => READ
+		em.clear();
+		SequenceEntity testent = em.find(SequenceEntity.class, seqEnt.getId());
+		ReflectionAssert.assertLenientEquals(seqEnt, testent);
+
+		// TEST DELETE
+		em.createQuery("delete from SequenceEntity").executeUpdate();
+		List<SequenceEntity> resutlAfterDelete = em.createQuery("select s from SequenceEntity s", SequenceEntity.class)
+				.getResultList();
+		ReflectionAssert.assertLenientEquals(resutlAfterDelete, new ArrayList<SequenceEntity>());
+	}
+
+	@Test
+	public void testRelations() {
+		Item createdItem = new Item();
+		
+		createdItem.setName("item");
+		em.persist(createdItem);
+		
+		Item itemDB = em.find(Item.class, createdItem.getId());
+		Package createdPkg = new Package();
+		createdPkg.setName("pkg");
+		List<Item> itemsList = new ArrayList<Item>();
+		itemsList.add(itemDB);
+		createdPkg.setItemList(itemsList);
+		createdItem.setPkg(createdPkg);
+		em.persist(createdPkg);
+	}
+}

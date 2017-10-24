@@ -1,0 +1,19 @@
+package entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+@Entity
+@Table(name = "sequenceentity")
+public class SequenceEntity {
+
+	@Id
+	@TableGenerator(name = "ID_GEN", table = "sequences", pkColumnName = "seq_name", valueColumnName = "seq_number", pkColumnValue = "sequence", allocationSize = 1)
+	private Integer id;
+
+	@Column(name = "name")
+	private String name;
+}

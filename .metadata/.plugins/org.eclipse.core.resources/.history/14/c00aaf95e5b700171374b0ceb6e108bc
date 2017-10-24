@@ -1,0 +1,29 @@
+package converter;
+
+import javax.persistence.AttributeConverter;
+
+import enums.Cover;
+
+public class CoverConverter implements AttributeConverter<Cover, String>{
+
+	@Override
+	public String convertToDatabaseColumn(Cover attribute) {
+		switch(attribute) {
+		case DUST_JACKET:
+			return "D";
+		case HARDCOVER:
+			return "H";
+		case PAPERBACK:
+			return "P";
+		default:
+			throw new IllegalArgumentException("Unknown" + attribute);
+		}
+	}
+
+	@Override
+	public Cover convertToEntityAttribute(String dbData) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

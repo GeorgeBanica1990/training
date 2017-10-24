@@ -1,0 +1,29 @@
+package tests;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import entities.SimpleEntity;
+
+public abstract class TransactionalSetup extends Setup {
+
+	protected EntityManager em;
+	
+	@Before
+	public void beforeEachTest() {
+		em = factory.createEntityManager();
+		em.getTransaction().begin();
+	}
+	
+	@After
+	public void afterEachTest() {
+		em.getTransaction().rollback();
+		em.close();
+	}
+
+}

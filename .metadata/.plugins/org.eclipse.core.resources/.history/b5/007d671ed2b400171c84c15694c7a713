@@ -1,0 +1,11 @@
+package threadlocaltest;
+
+public class ThreadDemo extends Thread {
+	@Override
+	public void run() {
+		MyThreadLocal.set(getName());
+		sysout("got into thread ");
+		Thread.sleep(3000);
+		System.out.println(MyThreadLocal.get());
+	}
+}

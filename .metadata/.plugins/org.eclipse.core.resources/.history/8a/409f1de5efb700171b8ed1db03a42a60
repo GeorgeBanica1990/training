@@ -1,0 +1,66 @@
+package entities;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import converter.CoverConverter;
+import enums.Cover;
+
+@Entity
+@Table(name = "entity")
+public class SimpleEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Column(name = "name")
+	private String name;
+	
+	//use converter to map enum since jpa 2.1
+	//alternatively you can use @Enum.ORDINAL or @Enum.STRING
+	@Convert(converter = CoverConverter.class)
+	private Cover cover;
+	
+	// date keeps only the date, time keeps the time, the most precise: timestamp
+	@Temporal(value = TemporalType.TIMESTAMP)
+	private Date date;
+
+	public Date getCurrentDate() {
+		return date;
+	}
+
+	public void setCurrentDate(Date currentDate) {
+		this.date = currentDate;
+	}
+
+	public Cover getCover() {
+		return cover;
+	}
+
+	public void setCover(Cover cover) {
+		this.cover = cover;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+}

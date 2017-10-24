@@ -1,0 +1,39 @@
+import java.lang.reflect.Proxy;
+
+import reflectionclasses.ReflectionClass;
+import reflectionclasses.ReflectionUtils;
+import testclasses.ResourceClass;
+import testclasses.ResourceInterface;
+
+public class ProxyTest {
+
+	public static void main(String[] args) {
+		reflectionProxy();
+		try {
+			playWithReflection();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void reflectionProxy() {
+		ResourceClass testClass = new ResourceClass();
+		ReflectionClass reflClass = new ReflectionClass(testClass);
+		ResourceInterface intf = (ResourceInterface) Proxy.newProxyInstance(ResourceInterface.class.getClassLoader(), new Class[] {ResourceInterface.class}, reflClass);
+		intf.showResource(1, "test");
+	}
+	
+	public static void playWithReflection() throws Exception {
+		try {
+			Class testclass = Class.forName("testclasses.ResourceClass");
+			ReflectionUtils.printReflectionMethods(testclass);
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("ClassNotFound: " + e.getMessage());
+		} 
+		
+		
+	}
+}

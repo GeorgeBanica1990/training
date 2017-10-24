@@ -1,0 +1,39 @@
+import java.lang.reflect.Proxy;
+
+import reflectionclasses.ReflectionClass;
+import testclasses.ResourceClass;
+import testclasses.ResourceInterface;
+
+public class ProxyTest {
+
+	public static void main(String[] args) {
+		reflectionProxy();
+		playWithReflection();
+
+	}
+
+	public static void reflectionProxy() {
+		ResourceClass testClass = new ResourceClass();
+		ReflectionClass reflClass = new ReflectionClass(testClass);
+		ResourceInterface intf = (ResourceInterface) Proxy.newProxyInstance(ResourceInterface.class.getClassLoader(), new Class[] {ResourceInterface.class}, reflClass);
+		intf.showResource(1, "test");
+	}
+	
+	public static void playWithReflection() {
+		try {
+			Class testclass = Class.forName("testclasses.ResourceClass");
+			//se fac la fel ca in proxy getters pt methode, fields, anotari
+			// nu le mai fac aici
+			ResourceClass newInstance = (ResourceClass) testclass.newInstance();
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("ClassNotFound: " + e.getMessage());
+		} catch (InstantiationException e) {
+			System.out.println("instantion exception: " + e.getMessage());
+		} catch (IllegalAccessException e) {
+			System.out.println("IllegalAccessException: " + e.getMessage());
+		}
+		
+		
+	}
+}

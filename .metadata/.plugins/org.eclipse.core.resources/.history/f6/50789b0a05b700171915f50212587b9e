@@ -1,0 +1,18 @@
+package reflection;
+
+import org.junit.Test;
+
+import models.ProxyExample;
+import utils.ReflectionUtils;
+
+@SuppressWarnings("rawtypes") 
+public class ReflectionTest {
+
+	@Test
+	public void test() throws Exception {
+		ProxyExample.createProxy();
+		Class testclass = Class.forName("models.Resource");
+		ReflectionUtils.printReflectionMethods(testclass);
+	}
+
+}

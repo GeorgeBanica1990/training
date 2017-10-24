@@ -1,0 +1,9 @@
+package threadlocaltest;
+
+public class MyThreadLocal {
+
+	private ThreadLocal<String> threadLocal = new ThreadLocal<String>();
+	
+	
+
+}

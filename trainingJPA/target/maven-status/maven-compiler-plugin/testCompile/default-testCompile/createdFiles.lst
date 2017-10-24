@@ -1,0 +1,3 @@
+tests\TransactionalSetup.class
+tests\JpaTest.class
+tests\Setup.class

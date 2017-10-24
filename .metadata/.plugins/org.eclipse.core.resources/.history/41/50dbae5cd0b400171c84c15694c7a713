@@ -1,0 +1,12 @@
+package threadlocaltest;
+
+public class ThreadLocalTest {
+
+	public static void main(String[] args) {
+		Thread firstThread = new ThreadDemo();
+		Thread secondThread = new ThreadDemo();
+		
+		firstThread.
+		
+	}
+}

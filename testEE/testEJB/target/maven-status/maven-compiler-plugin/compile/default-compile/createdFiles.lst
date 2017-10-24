@@ -1,0 +1,6 @@
+interceptors\EjbInterceptor.class
+services\SimpleService.class
+timers\ScheduledTimer.class
+services\SecondService.class
+services\PostgresService.class
+services\PersonService.class

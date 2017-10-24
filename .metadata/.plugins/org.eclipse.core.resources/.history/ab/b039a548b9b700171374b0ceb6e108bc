@@ -1,0 +1,24 @@
+package test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+import xml.model.Book;
+import xml.model.BookStore;
+
+public class XMLBindTest {
+
+	private static final String BOOKSTORE_XML = "./bookstore-jaxb.xml";
+
+	@Test
+	public static void testXML() {
+		
+		
+		//JAXBContext context 
+	}
+
+	
+
+}

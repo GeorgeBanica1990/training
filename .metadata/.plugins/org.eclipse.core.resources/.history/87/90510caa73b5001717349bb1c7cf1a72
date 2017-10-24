@@ -1,0 +1,17 @@
+package reflection;
+
+import org.junit.Test;
+
+import models.ProxyExample;
+import utils.ReflectionUtils;
+
+public class ReflectionTest {
+
+	@Test
+	public void test() {
+		ProxyExample.createProxy();
+		Class testclass = Class.forName("testclasses.ResourceClass");
+		ReflectionUtils.printReflectionMethods(testclass);
+	}
+
+}

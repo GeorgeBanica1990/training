@@ -1,0 +1,36 @@
+package testclasses;
+
+public class ResourceClass extends ParentResourceClass implements ResourceInterface {
+
+	private int id;
+	private String text;
+
+	private static final String className = "ResourceClass";
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		System.out.println("setText()");
+		this.text = text;
+	}
+
+	public String showResource(int id, String text) {
+		System.out.println("showResource " + "with "  + id +" " + text);
+		return text + id;
+	}
+
+	private String privateMethod() {
+		return className;
+	}
+
+}

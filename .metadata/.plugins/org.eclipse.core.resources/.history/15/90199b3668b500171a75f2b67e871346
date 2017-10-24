@@ -1,0 +1,10 @@
+package xmltraining.model;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+//bookstore is the root-element of the example
+@XmlRootElement(namespace = "xmltraining.model")
+public class BookStore {
+
+
+}

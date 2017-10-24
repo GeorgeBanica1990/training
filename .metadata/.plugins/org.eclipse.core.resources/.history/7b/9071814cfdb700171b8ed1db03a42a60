@@ -1,0 +1,98 @@
+package entities;
+
+import java.util.Date;
+import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import converter.CoverConverter;
+import enums.Cover;
+import enums.OrdinalEnum;
+import enums.StringEnum;
+import listeners.EntityListener;
+
+@Entity
+@EntityListeners(EntityListener.class)
+@Table(name = "simpleentity")
+public class SimpleEntity {
+
+	@Id
+	//@GeneratedValue(generator = "UUID")
+	//@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+	private UUID id;
+
+	@Column(name = "name")
+	private String name;
+
+	// use converter to map enum since jpa 2.1
+	// alternatively you can use @Enumerated(EnumType.ORDINAL) or @Enumerated(EnumType.STRING)
+	@Convert(converter = CoverConverter.class)
+	private Cover cover;
+
+	@Enumerated(EnumType.ORDINAL)
+	private OrdinalEnum ordinalEnum;
+
+	@Enumerated(EnumType.STRING)
+	private StringEnum stringEnum;
+
+	// date keeps only the date, time keeps the time, the most precise: timestamp
+	@Temporal(value = TemporalType.TIMESTAMP)
+	private Date date;
+
+	public OrdinalEnum getOrdinalEnum() {
+		return ordinalEnum;
+	}
+
+	public void setOrdinalEnum(OrdinalEnum ordinalEnum) {
+		this.ordinalEnum = ordinalEnum;
+	}
+
+	public StringEnum getStringEnum() {
+		return stringEnum;
+	}
+
+	public void setStringEnum(StringEnum stringEnum) {
+		this.stringEnum = stringEnum;
+	}
+
+	public Date getCurrentDate() {
+		return date;
+	}
+
+	public void setCurrentDate(Date currentDate) {
+		this.date = currentDate;
+	}
+
+	public Cover getCover() {
+		return cover;
+	}
+
+	public void setCover(Cover cover) {
+		this.cover = cover;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+}

@@ -1,0 +1,25 @@
+package threadlocaltest;
+
+public class MyRunnable implements Runnable{
+
+	private ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
+	
+	private Integer counter;
+	
+	public MyRunnable(int count) {
+		this.counter = count;
+	}
+	public void run() {
+		threadLocal.set(counter);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(threadLocal.get());
+		
+		
+	}
+
+}

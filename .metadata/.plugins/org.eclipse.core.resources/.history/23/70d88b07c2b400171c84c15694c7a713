@@ -1,0 +1,20 @@
+package threadlocaltest;
+
+public class MyRunnable implements Runnable{
+
+	private ThreadLocal<String> threadLocal = new ThreadLocal<String>();
+	
+	public void run() {
+		threadLocal.set("Sunt thread cu " + Math.random());
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(threadLocal.get());
+		
+		
+	}
+
+}
